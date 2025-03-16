@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.wearaware.screens.*
+import br.com.wearaware.ui.theme.CarbonFootprintViewModel
 import br.com.wearaware.ui.theme.WearAwareTheme
 
 class MainActivity : ComponentActivity() {

@@ -10,6 +10,6 @@ class CarbonFootprintRepository(private val dao: CarbonFootprintDao) {
     }
 
     suspend fun deleteItem(item: CarbonFootprintItem) {
-        dao.delete(item)
+        dao.deleteItem(item)
     }
 }

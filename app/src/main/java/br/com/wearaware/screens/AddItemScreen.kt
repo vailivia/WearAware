@@ -17,9 +17,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import br.com.wearaware.CarbonFootprintViewModel
 import br.com.wearaware.MenuUi
 import br.com.wearaware.R
+import br.com.wearaware.ui.theme.CarbonFootprintViewModel
 import br.com.wearaware.ui.theme.RosaClaro
 import br.com.wearaware.ui.theme.RosaPink
 import br.com.wearaware.ui.theme.Verde
@@ -28,7 +28,6 @@ import br.com.wearaware.ui.theme.Verde
 fun AddItemScreen(
     navController: NavController,
     onBackToHome: () -> Unit,
-    onAddItemClick: (Double) -> Unit,
     viewModel: CarbonFootprintViewModel
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
@@ -39,13 +38,24 @@ fun AddItemScreen(
         "Selecione" to 0,
         "Calça Jeans" to 33,
         "Camiseta" to 5,
-        "Vestido" to 12
+        "Vestido" to 12,
+        "Jaqueta" to 20,
+        "Shorts" to 8,
+        "Blusa de Moletom" to 18,
+        "Saia" to 10,
+        "Suéter" to 15,
+        "Bermuda" to 9,
+        "Macacão" to 14
     )
 
     val materiais = mapOf(
         "Selecione" to 0.0,
         "Algodão" to 1.0,
-        "Poliéster" to 1.5
+        "Poliéster" to 1.5,
+        "Lã" to 1.2,
+        "Nylon" to 1.3,
+        "Couro" to 2.0,
+        "Viscose" to 1.1
     )
 
     val pegadaCarbono = tiposPeca[tipoSelecionado]!! * materiais[materialSelecionado]!!
@@ -175,7 +185,7 @@ fun AddItemScreen(
                 // Botão Salvar Novo Item
                 Button(
                     onClick = {
-                        viewModel.addFootprint(pegadaCarbono)
+                        viewModel.addItem(pegadaCarbono)
                         onBackToHome()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
