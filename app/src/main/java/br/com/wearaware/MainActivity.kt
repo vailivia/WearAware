@@ -7,17 +7,11 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.wearaware.screens.AddItemScreen
-import br.com.wearaware.screens.CatalogScreen
-import br.com.wearaware.screens.HomeScreen
-import br.com.wearaware.screens.ImpactScreen
-import br.com.wearaware.screens.ShoppingScreen
+import br.com.wearaware.screens.*
 import br.com.wearaware.ui.theme.WearAwareTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +34,9 @@ class MainActivity : ComponentActivity() {
 
                         composable(route = "AddItem") {
                             AddItemScreen(
-                                onBackToHome = { navController.popBackStack() } // Chamada Corrigida
+                                navController = navController,
+                                onBackToHome = { navController.navigate("Home") },
+                                onAddItemClick = { value -> viewModel.addFootprint(value) }
                             )
                         }
 
@@ -53,7 +49,11 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(route = "Impact") {
-                            ImpactScreen(navController = navController)
+                            ImpactScreen(
+                                navController = navController,
+                                totalCarbonFootprint = viewModel.totalFootprint,
+                                totalItems = 10 // Altere para o valor correto
+                            )
                         }
                     }
                 }
