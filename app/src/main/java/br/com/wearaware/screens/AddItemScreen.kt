@@ -28,6 +28,7 @@ import br.com.wearaware.ui.theme.Verde
 fun AddItemScreen(
     navController: NavController,
     onBackToHome: () -> Unit,
+    onAddItemClick: (Double) -> Unit,
     viewModel: CarbonFootprintViewModel
 ) {
     var menuExpanded by remember { mutableStateOf(false) }

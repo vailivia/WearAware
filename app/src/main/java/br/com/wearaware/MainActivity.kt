@@ -3,6 +3,7 @@ package br.com.wearaware
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -12,10 +13,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.wearaware.screens.*
+import br.com.wearaware.screens.AddItemScreen
+import br.com.wearaware.screens.CatalogScreen
+import br.com.wearaware.screens.HomeScreen
+import br.com.wearaware.screens.ImpactScreen
+import br.com.wearaware.screens.ShoppingScreen
 import br.com.wearaware.ui.theme.WearAwareTheme
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: CarbonFootprintViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,7 +39,9 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(route = "AddItem") {
-                            AddItemScreen(navController)
+                            AddItemScreen(
+                                onBackToHome = { navController.popBackStack() } // Chamada Corrigida
+                            )
                         }
 
                         composable(route = "Catalog") {
@@ -44,7 +53,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(route = "Impact") {
-                            ImpactScreen(navController)
+                            ImpactScreen(navController = navController)
                         }
                     }
                 }
