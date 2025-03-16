@@ -30,7 +30,12 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = "Home") {
                         composable(route = "Home") {
-                            HomeScreen(navController)
+                            HomeScreen(
+                                navController = navController,
+                                totalCarbonFootprint = viewModel.totalFootprint, // Passando o total
+                                totalItems = viewModel.totalItems, // Passando o total de itens
+                                onAddItemClick = { navController.navigate("AddItem") } // Corrigindo a navegação
+                            )
                         }
 
                         composable(route = "AddItem") {

@@ -35,10 +35,11 @@ import br.com.wearaware.ui.theme.RosaPink
 import br.com.wearaware.ui.theme.Verde
 
 @Composable
-fun HomeScreen(navController: NavController,
-               totalCarbonFootprint: Int,
-               totalItems: Int,
-               onAddItemClick: () -> Unit) {
+fun HomeScreen(
+    navController: NavController,
+    totalCarbonFootprint: Int,
+    totalItems: Int,
+    onAddItemClick: () -> Unit) {
     var menuExpanded by remember { mutableStateOf(false) }
 
     Box(
