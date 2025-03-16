@@ -12,8 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.wearaware.screens.AddItemScreen
-import br.com.wearaware.screens.HomeScreen
+import br.com.wearaware.screens.*
 import br.com.wearaware.ui.theme.WearAwareTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,33 +28,27 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = "Home") {
                         composable(route = "Home") {
-                            HomeScreen(
-                                totalCarbonFootprint = 0, // Valores iniciais
-                                totalItems = 0,
-                                onAddItemClick = { navController.navigate("AddItem") }
-                            )
+                            HomeScreen(navController)
                         }
 
                         composable(route = "AddItem") {
-                            AddItemScreen(
-                                onBackToHome = { navController.popBackStack() } // Chamada Corrigida
-                            )
+                            AddItemScreen(navController)
+                        }
+
+                        composable(route = "Catalog") {
+                            CatalogScreen(navController)
+                        }
+
+                        composable(route = "Shopping") {
+                            ShoppingScreen(navController)
+                        }
+
+                        composable(route = "Impact") {
+                            ImpactScreen(navController)
                         }
                     }
                 }
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewHomeScreen() {
-    WearAwareTheme {
-        HomeScreen(
-            totalCarbonFootprint = 135,
-            totalItems = 5,
-            onAddItemClick = {}
-        )
     }
 }

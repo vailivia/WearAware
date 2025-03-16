@@ -4,8 +4,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,18 +25,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.wearaware.CarbonFootprintViewModel
-import br.com.wearaware.R
-import br.com.wearaware.ui.theme.*
+import androidx.navigation.NavController
 import br.com.wearaware.MenuUi
+import br.com.wearaware.R
+import br.com.wearaware.ui.theme.Laranja
+import br.com.wearaware.ui.theme.QuickSand
+import br.com.wearaware.ui.theme.RosaClaro
+import br.com.wearaware.ui.theme.RosaPink
+import br.com.wearaware.ui.theme.Verde
 
 @Composable
-fun HomeScreen(
-    totalCarbonFootprint: Int,
-    totalItems: Int,
-    onAddItemClick: () -> Unit
-) {
-    var menuExpanded by remember { mutableStateOf(false) } // Estado do menu
+fun HomeScreen(navController: NavController,
+               totalCarbonFootprint: Int,
+               totalItems: Int,
+               onAddItemClick: () -> Unit) {
+    var menuExpanded by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -33,10 +47,9 @@ fun HomeScreen(
             .background(RosaClaro)
     ) {
         Column {
-            // Ícone do menu + Dropdown
             Box(modifier = Modifier.fillMaxWidth()) {
                 IconButton(
-                    onClick = { menuExpanded = !menuExpanded }, // Alterna o menu
+                    onClick = { menuExpanded = !menuExpanded },
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Icon(
@@ -49,7 +62,8 @@ fun HomeScreen(
 
                 MenuUi(
                     expanded = menuExpanded,
-                    onDismissRequest = { menuExpanded = false }
+                    onDismissRequest = { menuExpanded = false },
+                    navController = navController
                 )
             }
         }
@@ -80,7 +94,7 @@ fun HomeScreen(
                 color = Color.Black
             )
 
-            // Imagem
+// Imagem
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -88,14 +102,14 @@ fun HomeScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.online_closet),
+                    painter = painterResource(id = R.drawable.online_closet), // Altere para o nome do seu PNG
                     contentDescription = "Imagem principal",
                     modifier = Modifier.size(250.dp),
-                    tint = Color.Unspecified
+                    tint = Color.Unspecified // Mantém a cor original da imagem
                 )
             }
 
-            // Box Pegada de Carbono
+// Box Pegada de Carbono
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -113,7 +127,7 @@ fun HomeScreen(
                         color = Color.Black
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp).padding(5.dp))
 
                     Text(
                         text = "$totalCarbonFootprint kg CO₂",
@@ -127,13 +141,13 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Box Peças Cadastradas
+// Box Peças Cadastradas
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(2.dp, Color.Black, shape = RoundedCornerShape(24.dp))
                     .background(Laranja, shape = RoundedCornerShape(24.dp))
-                    .padding(16.dp),
+                    .padding(16.dp),// Correção: use padding em vez de margin
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -145,7 +159,7 @@ fun HomeScreen(
                         color = Color.Black
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp).padding(5.dp))
 
                     Text(
                         text = "$totalItems",
@@ -157,10 +171,10 @@ fun HomeScreen(
                 }
             }
 
-            // Botão Adicionar Item
+// Botão Adicionar Item
             Button(
                 onClick = onAddItemClick,
-                colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
+                colors = ButtonDefaults.buttonColors(containerColor = RosaPink), // Correção: use containerColor
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
@@ -177,14 +191,3 @@ fun HomeScreen(
         }
     }
 }
-@Composable
-fun HomeScreen(viewModel: CarbonFootprintViewModel) {
-    val totalFootprint by viewModel.totalFootprint.collectAsState()
-
-    Text(
-        text = "Pegada de Carbono Total: ${String.format("%.1f kg CO₂", totalFootprint)}",
-        fontSize = 24.sp,
-        fontWeight = FontWeight.Bold
-    )
-}
-
