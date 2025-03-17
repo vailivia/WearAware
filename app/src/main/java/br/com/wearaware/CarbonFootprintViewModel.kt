@@ -25,7 +25,7 @@ class CarbonFootprintViewModel(application: Application) : AndroidViewModel(appl
         .stateIn(viewModelScope, SharingStarted.Lazily, 0.0)
 
     val totalItems: StateFlow<Int> = allItems
-        .map { items -> items.sumOf { it.quantity } }  // Soma a quantidade de cada item
+        .map { items -> items.sumOf { it.quantity } }
         .stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     fun addItem(item: CarbonFootprintItem) = viewModelScope.launch {

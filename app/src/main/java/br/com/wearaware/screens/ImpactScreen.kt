@@ -29,26 +29,21 @@ fun ImpactScreen(
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
 
-    // Coleta todos os itens do banco de forma reativa
     val items = viewModel.allItems.collectAsState(initial = emptyList()).value
 
-    // 1) Soma total de CO2 (tudo que foi inserido)
     val totalAll = items.sumOf { it.footprintValue }
 
-    // 2) Soma apenas dos itens de compras (ShoppingScreen)
     val totalShopping = items
         .filter { it.source == "Shopping" }
         .filter { it.source == "Shopping" }
         .sumOf { it.footprintValue }
 
-    // 3) Soma apenas dos itens adicionados via AddItemScreen
     val totalAddItem = items
         .filter { it.source == "AddItem" }
         .sumOf { it.footprintValue }
 
     Scaffold(
         topBar = {
-            // Barra superior com menu (igual às outras telas)
             Box(modifier = Modifier.fillMaxWidth()) {
                 IconButton(
                     onClick = { menuExpanded = !menuExpanded },
@@ -78,7 +73,6 @@ fun ImpactScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            // Título
             Text(
                 text = "Seu Impacto",
                 fontSize = 32.sp,
@@ -97,7 +91,6 @@ fun ImpactScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 1º Card: Pegada de carbono total
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -129,7 +122,6 @@ fun ImpactScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 2º Card: Pegada de carbono compras
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -161,7 +153,6 @@ fun ImpactScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 3º Card: Pegada de carbono itens
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

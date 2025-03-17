@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "carbon_footprint_db"
                 )
-                    .fallbackToDestructiveMigration() // recria o banco ao mudar versão
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

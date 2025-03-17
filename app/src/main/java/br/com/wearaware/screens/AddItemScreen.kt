@@ -112,7 +112,6 @@ fun AddItemScreen(
     val pegadaCarbonoCalculada =
         (tiposPecaMap[tipoSelecionado] ?: 0) * (materiaisMap[materialSelecionado] ?: 0.0)
 
-    // Apenas habilita o botão se os dois dropdowns tiverem valores diferentes de "Selecione"
     val isButtonEnabled = (tipoSelecionado != "Selecione") && (materialSelecionado != "Selecione")
 
     Scaffold(

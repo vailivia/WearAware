@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
 
-                    // Observa os fluxos do ViewModel
                     val totalFootprint = viewModel.totalFootprint.collectAsState().value
                     val totalItems = viewModel.totalItems.collectAsState().value
 
@@ -69,7 +68,6 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        // Agora passamos o viewModel para a tela de Impact
                         composable(route = "Impact") {
                             ImpactScreen(
                                 navController = navController,

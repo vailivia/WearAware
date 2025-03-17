@@ -12,11 +12,11 @@ interface CarbonFootprintDao {
     suspend fun insertItem(item: CarbonFootprintItem)
 
     @Query("SELECT * FROM carbon_footprint")
-    fun getAllItems(): Flow<List<CarbonFootprintItem>>  // Retorna Flow
+    fun getAllItems(): Flow<List<CarbonFootprintItem>>
 
     @Query("SELECT SUM(footprintValue) FROM carbon_footprint")
     suspend fun getTotalFootprint(): Double?
 
-    @Delete // Adicionando o método deleteItem (ou delete, se for o caso)
+    @Delete
     suspend fun deleteItem(item: CarbonFootprintItem)
 }

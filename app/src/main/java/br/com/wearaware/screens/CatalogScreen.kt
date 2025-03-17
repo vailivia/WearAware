@@ -31,14 +31,11 @@ fun CatalogScreen(
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
 
-    // Coleta os itens cadastrados de forma reativa
     val items = viewModel.allItems.collectAsState(initial = emptyList()).value
-    // Ordena os itens de forma decrescente (novo item no topo)
     val sortedItems = items.sortedByDescending { it.id }
 
     Scaffold(
         topBar = {
-            // Barra superior com o menu (igual às outras telas)
             Box(modifier = Modifier.fillMaxWidth()) {
                 IconButton(
                     onClick = { menuExpanded = !menuExpanded },
@@ -68,7 +65,6 @@ fun CatalogScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            // Título principal
             Text(
                 text = "Seu Catálogo",
                 fontSize = 32.sp,
@@ -95,7 +91,6 @@ fun CatalogScreen(
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.height(10.dp))
-                    // Mostra o valor total de itens
                     Text(
                         text = "$totalItems",
                         fontSize = 24.sp,
@@ -107,7 +102,6 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Lista dinâmica dos itens cadastrados (apenas o design foi alterado)
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(vertical = 8.dp)

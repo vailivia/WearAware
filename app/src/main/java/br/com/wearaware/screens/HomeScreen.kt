@@ -96,7 +96,6 @@ fun HomeScreen(
                 color = Color.Black
             )
 
-            // Imagem
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,14 +103,13 @@ fun HomeScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.online_closet), // Altere para o nome do seu PNG
+                    painter = painterResource(id = R.drawable.online_closet),
                     contentDescription = "Imagem principal",
                     modifier = Modifier.size(250.dp),
-                    tint = Color.Unspecified // Mantém a cor original da imagem
+                    tint = Color.Unspecified
                 )
             }
 
-            // Box Pegada de Carbono
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -143,13 +141,12 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Box Pegadas Cadastradas
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(2.dp, Color.Black, shape = RoundedCornerShape(24.dp))
                     .background(Laranja, shape = RoundedCornerShape(24.dp))
-                    .padding(16.dp), // Correção: use padding em vez de margin
+                    .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -173,7 +170,6 @@ fun HomeScreen(
                 }
             }
 
-            // Botão Adicionar Item
             Button(
                 onClick = onAddItemClick,
                 colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
@@ -191,7 +187,6 @@ fun HomeScreen(
                 )
             }
 
-            // NOVO BOTÃO "Adicionar Compra"
             Button(
                 onClick = { navController.navigate("Shopping") },
                 colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
