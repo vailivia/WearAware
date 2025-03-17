@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [CarbonFootprintItem::class], version = 1)
+@Database(entities = [CarbonFootprintItem::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun carbonFootprintDao(): CarbonFootprintDao
 
@@ -19,10 +19,13 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "carbon_footprint_db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration() // recria o banco ao mudar versão
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
 }
+

@@ -7,5 +7,7 @@ import androidx.room.PrimaryKey
 data class CarbonFootprintItem(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val description: String,
-    val footprintValue: Double
+    val footprintValue: Double,
+    val source: String,
+    val quantity: Int
 )

@@ -39,7 +39,8 @@ fun HomeScreen(
     navController: NavController,
     totalCarbonFootprint: Int,
     totalItems: Int,
-    onAddItemClick: () -> Unit) {
+    onAddItemClick: () -> Unit
+) {
     var menuExpanded by remember { mutableStateOf(false) }
 
     Box(
@@ -95,7 +96,7 @@ fun HomeScreen(
                 color = Color.Black
             )
 
-// Imagem
+            // Imagem
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -110,7 +111,7 @@ fun HomeScreen(
                 )
             }
 
-// Box Pegada de Carbono
+            // Box Pegada de Carbono
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -142,18 +143,18 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-// Box Peças Cadastradas
+            // Box Pegadas Cadastradas
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(2.dp, Color.Black, shape = RoundedCornerShape(24.dp))
                     .background(Laranja, shape = RoundedCornerShape(24.dp))
-                    .padding(16.dp),// Correção: use padding em vez de margin
+                    .padding(16.dp), // Correção: use padding em vez de margin
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "Peças cadastradas",
+                        text = "Pegadas Cadastradas",
                         style = MaterialTheme.typography.titleLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
@@ -172,10 +173,10 @@ fun HomeScreen(
                 }
             }
 
-// Botão Adicionar Item
+            // Botão Adicionar Item
             Button(
                 onClick = onAddItemClick,
-                colors = ButtonDefaults.buttonColors(containerColor = RosaPink), // Correção: use containerColor
+                colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
@@ -184,6 +185,24 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "Adicionar Item",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontSize = 18.sp,
+                    color = Color.Black
+                )
+            }
+
+            // NOVO BOTÃO "Adicionar Compra"
+            Button(
+                onClick = { navController.navigate("Shopping") },
+                colors = ButtonDefaults.buttonColors(containerColor = RosaPink),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+                    .border(2.dp, Color.Black, shape = RoundedCornerShape(24.dp))
+                    .background(RosaPink, shape = RoundedCornerShape(24.dp))
+            ) {
+                Text(
+                    text = "Adicionar Compra",
                     style = MaterialTheme.typography.titleLarge,
                     fontSize = 18.sp,
                     color = Color.Black
